@@ -1,0 +1,22 @@
+# Render Blueprint - New > Blueprint, trỏ tới repo GitHub
+services:
+  - type: web
+    name: phongtro-api
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/v1/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false          # dán chuỗi kết nối MongoDB Atlas
+      - key: JWT_ACCESS_SECRET
+        generateValue: true
+      - key: JWT_REFRESH_SECRET
+        generateValue: true
+      - key: CLIENT_URL
+        value: "*"
+      - key: BASE_URL
+        sync: false          # https://<tên-service>.onrender.com
